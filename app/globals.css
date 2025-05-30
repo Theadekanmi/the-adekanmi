@@ -19,8 +19,53 @@
   }
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+html,
 body {
-  background: var(--background);
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  /* background: var(--background); */
+  body {
+    background-color: #f5efef; /* Light Gray */
+    font-family: 'Arial', sans-serif; /* Optional */
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+/* globals.css */
+
+
+
+/* Custom Dark Mode */
+html {
+  --background-color: #fff;
+  --text-color: #111827;
+}
+
+html.dark {
+  --background-color: #0f172a; /* Dark background */
+  --text-color: #f1f5f9;        /* Dark text */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+
+

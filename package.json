@@ -1,5 +1,5 @@
 {
-  "name": "adekanmi",
+  "name": "porfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "aos": "^2.3.4",
+    "framer-motion": "^12.15.0",
+    "lucide-react": "^0.510.0",
+    "next": "15.2.5",
     "react": "^19.0.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.2"
+    "react-icons": "^5.5.0",
+    "react-loading-skeleton": "^3.5.0",
+    "react-player": "^2.16.0",
+    "reactjs-popup": "^2.0.6",
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

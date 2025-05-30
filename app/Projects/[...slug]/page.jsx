@@ -1,0 +1,133 @@
+"use client";
+import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+
+export default function ProjectPage() {
+  const params = useParams();
+  const router = useRouter();
+
+  const projectSlug = params.slug ? params.slug.join("/") : "default-project";
+
+  const projectData = {
+    "nextjs-portfolio": {
+      title: "Next.js Projects",
+      description: "Showcase of mini-projects built using Next.js and Tailwind CSS.",
+      items: [
+        {
+          slug: "jiim-projects",
+          title: "Jiim Tech Lovers Projects",
+          category: "nextjs",
+          desc: "Showcase of mini-projects built using Next.js and Tailwind CSS.",
+          img: "/images/jiim-tech.jpg",
+          stack: ["Next.js", "Tailwind"],
+          link: "https://jiim-tech-lovers-projects.vercel.app/",
+        },
+        {
+          slug: "alpha-msd2",
+          title: "Alpha MSD2",
+          category: "nextjs",
+          desc: "Professional portfolio showcasing frontend and clean architecture.",
+          img: "/images/alpha.jpg",
+          stack: ["Next.js", "Tailwind"],
+          link: "https://alphaa-msd2.vercel.app/",
+        },
+        {
+          slug: "classic-info",
+          title: "Classic Info",
+          category: "nextjs",
+          desc: "Tech blog/news platform with crisp UI and blog post navigation.",
+          img: "/images/classic.jpg",
+          stack: ["Next.js", "Tailwind"],
+          link: "https://classicinfo.vercel.app",
+        },
+      ],
+      nextProject: "front/backend-challenges",
+    },
+    "front/backend-challenges": {
+      title: "Frontend/Backend Challenges",
+      description: "A collection of challenges completed to sharpen frontend/backend skills.",
+      items: [
+        {
+          slug: "wumistitches",
+          title: "Wumi Stitches",
+          category: "allProjects",
+          desc: "Fashion brand site with clean layout and easy product browsing.",
+          img: "/images/wumi.jpg",
+          stack: ["HTML", "CSS", "JavaScript"],
+          link: "https://wumistitches.vercel.app/",
+        },
+      ],
+      nextProject: "nextjs-portfolio",
+    },
+  };
+
+  const project = projectData[projectSlug] || {
+    title: "Project Not Found",
+    description: "The requested project does not exist. Please check the URL.",
+    items: [],
+    nextProject: "nextjs-portfolio",
+  };
+
+  return (
+    <section className="p-8 max-w-6xl mx-auto">
+      <h1 className="text-4xl font-bold text-center">{project.title}</h1>
+      <p className="text-lg text-center text-gray-600 dark:text-gray-300 my-4">
+        {project.description}
+      </p>
+
+      <div className="grid gap-6 mt-10 md:grid-cols-2 lg:grid-cols-3">
+        {project.items.length > 0 ? (
+          project.items.map((item, index) => (
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+              <Image
+                src={item.img}
+                alt={item.title}
+                width={600}
+                height={300}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h2 className="text-2xl font-semibold">{item.title}</h2>
+                <p className="text-sm text-gray-500 mb-2">{item.desc}</p>
+                <div className="flex flex-wrap gap-2 my-2">
+                  {item.stack.map((tech, i) => (
+                    <span key={i} className="bg-gray-200 dark:bg-gray-700 text-sm px-2 py-1 rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-3 text-blue-600 hover:underline"
+                >
+                  Visit Project →
+                </a>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center col-span-full text-red-500">No projects found.</p>
+        )}
+      </div>
+
+      <div className="flex flex-col items-center mt-10 gap-4">
+        {projectData[project.nextProject] && (
+          <button
+            onClick={() => router.push(`/Projects/${project.nextProject}`)}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg"
+          >
+            Go to {projectData[project.nextProject].title}
+          </button>
+        )}
+        <button
+          onClick={() => router.push("/Projects")}
+          className="bg-gray-600 text-white px-6 py-3 rounded-lg"
+        >
+          Back to All Projects
+        </button>
+      </div>
+    </section>
+  );
+}
