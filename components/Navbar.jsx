@@ -62,7 +62,9 @@ const Navbar = () => {
               <ul className="absolute bg-white dark:bg-darkBackground text-lightText dark:text-black shadow-md rounded mt-2 z-10 min-w-[160px]">
                 <li><Link href="/Services" className="hover:text-blue-600 px-4 py-2 block">Overview</Link></li>
                 <li><Link href="/Services/web-development" className="hover:text-blue-600 px-4 py-2 block">Web Development</Link></li>
-                <li><Link href="/Services/ui-design" className="hover:text-blue-600 px-4 py-2 block">UI Design</Link></li>
+                <li><Link href="/Services/performance" className="hover:text-blue-600 px-4 py-2 block">Performance Optimization</Link></li>
+                <li><Link href="/Services/seo" className="hover:text-blue-600 px-4 py-2 block">SEO&Web Strategy</Link></li>
+                <li><Link href="/Services/maintenance" className="hover:text-blue-600 px-4 py-2 block">Maintenance</Link></li>
               </ul>
             )}
           </li>

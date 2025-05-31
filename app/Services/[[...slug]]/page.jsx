@@ -1,56 +1,27 @@
-"use client"
-// optional catch all routes
 "use client";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import dynamic from "next/dynamic";
+
+// Dynamic imports at the top level
+const Overview = dynamic(() => import("./overview"));
+const WebDevelopment = dynamic(() => import("./webdevelopment"));
+const Performance = dynamic(() => import("./performance"));
+const SEO = dynamic(() => import("./seo"));
+const Maintenance = dynamic(() => import("./maintenance"));
 
 export default function ServicePage() {
   const params = useParams();
-  const router = useRouter();
-  const slug = params.slug || []; // Get URL params or default to empty array
+  const slug = params.slug?.[0] || "overview";
 
-  // Define all available services
-  const services = ["web-development", "ui-design"];
-
-  // Get current index of the service
-  const currentIndex = services.indexOf(slug.join("-"));
-
-  // Determine the next service cyclically
-  const nextService = services[(currentIndex + 1) % services.length];
-
-  // Define service data dynamically
-  const serviceData = {
-    "web-development": {
-      title: "Web Development",
-      description: "Explore our web development services, including front-end, back-end, and full-stack solutions.",
-    },
-    "ui-design": {
-      title: "UI Design",
-      description: "We craft visually stunning and user-friendly UI designs for websites and apps.",
-    },
+  const views = {
+    overview: Overview,
+    webdevelopment: WebDevelopment,
+    performance: Performance,
+    seo: SEO,
+    maintenance: Maintenance,
   };
 
-  // Fetch dynamic content or fallback to "Our Services"
-  const service = serviceData[slug.join("-")] || {
-    title: "Our Services",
-    description: "Explore our wide range of services including web development, UI design, and more.",
-  };
+  const View = views[slug] || Overview;
 
-  return (
-    <section className="p-8 text-center">
-      <h1 className="text-4xl font-bold">{service.title}</h1>
-      <p className="text-lg">{service.description}</p>
-
-      {/* Button to cycle through services dynamically */}
-      {nextService && (
-        <button 
-          onClick={() => router.push(`/Services/${nextService}`)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg mt-6"
-        >
-          Go to {nextService.replace("-", " ").toUpperCase()}
-        </button>
-      )}
-    </section>
-  );
+  return <View />;
 }
-
-
