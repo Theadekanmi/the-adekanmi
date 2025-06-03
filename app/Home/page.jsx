@@ -123,8 +123,7 @@ const HomePage = () => {
             </div>
             <button
               onClick={() => setShowComp(!showComp)}
-              className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
-            >
+              className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
               Next
             </button>
           </div>
@@ -182,7 +181,7 @@ const HomePage = () => {
     </div>
 
     <div className="flex flex-wrap justify-center gap-4 mt-16">
-      <a href="#contact">
+      <a href="/Contact">
         <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
           <CiMail className="text-xl" />
           <span>HIRE ME</span>
