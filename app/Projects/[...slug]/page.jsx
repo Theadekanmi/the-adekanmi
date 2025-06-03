@@ -20,7 +20,7 @@ export default function ProjectPage() {
           desc: "This project was developed to highlight the design, performance, and features of various cars, offering an engaging and informative experience for enthusiasts and potential buyers. Using Next.js and Tailwind CSS.",
           img: "https://res.cloudinary.com/dpuj2f1h3/image/upload/v1748804566/cars_sbo3c7.jpg",
           stack: ["Next.js", "Tailwind"],
-          link: "https://jiim-tech-lovers-projects.vercel.app/",
+          link: "https://jimmotors.vercel.app/",
         },
         {
           slug: "alpha-msd2",
@@ -48,13 +48,13 @@ export default function ProjectPage() {
       description: "A collection of challenges completed to sharpen frontend/backend skills.",
       items: [
         {
-          slug: "wumistitches",
-          title: "Wumi Stitches",
+          slug: "tomistitches",
+          title: "Tomi Stitches",
           category: "allProjects",
           desc: "This platform is designed to connect customers with skilled designers, allowing them to order and customize clothing effortlessly. Users can send messages directly to designers, specifying styles, fabrics, and measurements to create unique pieces tailored to their preferences.",
           img: "https://res.cloudinary.com/dpuj2f1h3/image/upload/v1748805017/jagiya_jraezm.jpg",
           stack: ["HTML", "CSS", "JavaScript"],
-          link: "https://wumistitches.vercel.app/",
+          link: "https://tomistitches.vercel.app/",
         },
       ],
       nextProject: "nextjs-portfolio",

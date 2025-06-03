@@ -1,131 +1,146 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const dropdownRef = useRef();
 
+  // Close dropdowns on outside click
   useEffect(() => {
-    const checkSize = () => setIsDesktop(window.innerWidth >= 1024);
-    checkSize();
-    window.addEventListener("resize", checkSize);
-    return () => window.removeEventListener("resize", checkSize);
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const dropdownClasses =
-    "absolute left-0 bg-white dark:bg-darkBackground text-lightText dark:text-black shadow-md rounded mt-2 z-10 min-w-[160px]";
+  const toggleDropdown = (menu) => {
+    setActiveDropdown(activeDropdown === menu ? null : menu);
+  };
+
+  const navLink = "block py-2 px-4 hover:text-blue-600";
+  const dropdownLink = "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800";
 
   return (
-    <nav className="fixed w-full top-0 left-0 z-50 bg-white dark:bg-darkBackground text-gray-800 dark:text-darkText shadow-md">
-      <div className="flex justify-between items-center px-6 py-4">
+    <nav className="fixed top-0 left-0 w-full bg-gray-800 text-gray-400 dark:bg-darkBackground shadow-md z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 flex-shrink-0 rounded-full bg-blue-700 text-white flex items-center justify-center text-lg font-bold">
-            SMGE
-          </div>
-          <div className="leading-tight text-gray-800 dark:text-darkText">
-            <h3 className="font-bold text-md hover:text-blue-600">ADEKANMI</h3>
-            <span className="text-sm text-gray-500 hover:text-blue-600">ADEDIGBA</span>
+          <div className="w-12 h-12 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-lg">SMGE</div>
+          <div className="leading-tight">
+            <h3 className="font-bold text-md">ADEKANMI</h3>
+            <span className="text-sm text-gray-500">ADEDIGBA</span>
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden">
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-2xl focus:outline-none">
-            {isMobileMenuOpen ? "✕" : "☰"}
-          </button>
-        </div>
+        {/* Hamburger (Mobile) */}
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-2xl">
+          {isMobileMenuOpen ? "✕" : "☰"}
+        </button>
 
-        {/* Navigation */}
-        <ul
-          className={`relative flex-col lg:flex-row gap-6 items-start lg:items-center text-1xl font-bold ${
-            isMobileMenuOpen ? "flex" : "hidden lg:flex"
-          } bg-white dark:bg-darkBackground lg:bg-transparent px-6 py-4 lg:p-0 w-full lg:w-auto`}
-        >
-          <li><Link href="/" className="hover:text-blue-600">Home</Link></li>
-          <li><Link href="/About" className="hover:text-blue-600">About</Link></li>
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex space-x-6 font-semibold items-center">
+          <li><Link href="/" className={navLink}>Home</Link></li>
+          <li><Link href="/About" className={navLink}>About</Link></li>
 
-          {/* Projects Dropdown */}
-          <li
-            className="relative group lg:hover:block"
-            onClick={() => !isDesktop && setIsProjectsOpen(!isProjectsOpen)}
-          >
-            <button className="cursor-pointer hover:text-blue-600">Projects ▾</button>
-            <ul
-              className={`${dropdownClasses} ${
-                isDesktop
-                  ? "hidden group-hover:block"
-                  : isProjectsOpen
-                  ? "block"
-                  : "hidden"
-              }`}
-            >
-              <li><Link href="/Projects" className="hover:text-blue-600 px-4 py-2 block">All Projects</Link></li>
-              <li><Link href="/Projects/nextjs-portfolio" className="hover:text-blue-600 px-4 py-2 block">Next.js Portfolio</Link></li>
-              <li><Link href="/Projects/front/backend-challenges" className="hover:text-blue-600 px-4 py-2 block">Front/backend Challenges</Link></li>
-            </ul>
+          <li className="relative" ref={dropdownRef}>
+            <button onClick={() => toggleDropdown("projects")} className={navLink}>Projects ▾</button>
+            {activeDropdown === "projects" && (
+              <ul className="absolute left-0 mt-2 min-w-[180px] bg-white dark:bg-darkBackground shadow-lg rounded-md">
+                <li><Link href="/Projects" className={dropdownLink}>All Projects</Link></li>
+                <li><Link href="/Projects/nextjs-portfolio" className={dropdownLink}>Next.js Portfolio</Link></li>
+                <li><Link href="/Projects/front/backend-challenges" className={dropdownLink}>Frontend/Backend Challenges</Link></li>
+              </ul>
+            )}
           </li>
 
-          {/* Services Dropdown */}
-          <li
-            className="relative group lg:hover:block"
-            onClick={() => !isDesktop && setIsServicesOpen(!isServicesOpen)}
-          >
-            <button className="cursor-pointer hover:text-blue-600">Services ▾</button>
-            <ul
-              className={`${dropdownClasses} ${
-                isDesktop
-                  ? "hidden group-hover:block"
-                  : isServicesOpen
-                  ? "block"
-                  : "hidden"
-              }`}
-            >
-              <li><Link href="/Services" className="hover:text-blue-600 px-4 py-2 block">Overview</Link></li>
-              <li><Link href="/Services/web-development" className="hover:text-blue-600 px-4 py-2 block">Web Development</Link></li>
-              <li><Link href="/Services/performance" className="hover:text-blue-600 px-4 py-2 block">Performance Optimization</Link></li>
-              <li><Link href="/Services/seo" className="hover:text-blue-600 px-4 py-2 block">SEO&Web Strategy</Link></li>
-              <li><Link href="/Services/maintenance" className="hover:text-blue-600 px-4 py-2 block">Maintenance</Link></li>
-            </ul>
+          <li className="relative" ref={dropdownRef}>
+            <button onClick={() => toggleDropdown("services")} className={navLink}>Services ▾</button>
+            {activeDropdown === "services" && (
+              <ul className="absolute left-0 mt-2 min-w-[180px] bg-white dark:bg-darkBackground shadow-lg rounded-md">
+                <li><Link href="/Services" className={dropdownLink}>Overview</Link></li>
+                <li><Link href="/Services/web-development" className={dropdownLink}>Web Development</Link></li>
+                <li><Link href="/Services/performance" className={dropdownLink}>Performance Optimization</Link></li>
+                <li><Link href="/Services/seo" className={dropdownLink}>SEO & Strategy</Link></li>
+                <li><Link href="/Services/maintenance" className={dropdownLink}>Maintenance</Link></li>
+              </ul>
+            )}
           </li>
 
-          {/* Resources Dropdown */}
-          <li
-            className="relative group lg:hover:block"
-            onClick={() => !isDesktop && setIsResourcesOpen(!isResourcesOpen)}
-          >
-            <button className="cursor-pointer hover:text-blue-600">Resources ▾</button>
-            <ul
-              className={`${dropdownClasses} ${
-                isDesktop
-                  ? "hidden group-hover:block"
-                  : isResourcesOpen
-                  ? "block"
-                  : "hidden"
-              }`}
-            >
-              <li><Link href="/Resources/Insight" className="hover:text-blue-600 px-4 py-2 block">Insight</Link></li>
-              <li><Link href="/Resources/Toolkits" className="hover:text-blue-600 px-4 py-2 block">Toolkits</Link></li>
-              <li><Link href="/Resources/Playground" className="hover:text-blue-600 px-4 py-2 block">Playground</Link></li>
-              <li><Link href="/Resources/Faq" className="hover:text-blue-600 px-4 py-2 block">FAQ</Link></li>
-            </ul>
+          <li className="relative" ref={dropdownRef}>
+            <button onClick={() => toggleDropdown("resources")} className={navLink}>Resources ▾</button>
+            {activeDropdown === "resources" && (
+              <ul className="absolute left-0 mt-2 min-w-[180px] bg-white dark:bg-darkBackground shadow-lg rounded-md">
+                <li><Link href="/Resources/Insight" className={dropdownLink}>Insight</Link></li>
+                <li><Link href="/Resources/Toolkits" className={dropdownLink}>Toolkits</Link></li>
+                <li><Link href="/Resources/Playground" className={dropdownLink}>Playground</Link></li>
+                <li><Link href="/Resources/Faq" className={dropdownLink}>FAQ</Link></li>
+              </ul>
+            )}
           </li>
 
-          <li><Link href="/Resume" className="hover:text-blue-600">Resume</Link></li>
-          <li><Link href="/Contact" className="hover:text-blue-600">Contact</Link></li>
-          <li>
-            <button onClick={toggleTheme}>
-              {theme === "dark" ? "🌞" : "🌙"}
-            </button>
-          </li>
+          <li><Link href="/Resume" className={navLink}>Resume</Link></li>
+          <li><Link href="/Contact" className={navLink}>Contact</Link></li>
+          <li><button onClick={toggleTheme}>{theme === "dark" ? "🌞" : "🌙"}</button></li>
         </ul>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden px-6 pb-4 space-y-3 bg-white dark:bg-darkBackground shadow">
+          <Link href="/" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+          <Link href="/About" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+
+          <div className="space-y-1">
+            <button onClick={() => toggleDropdown("projects")} className={navLink}>Projects ▾</button>
+            {activeDropdown === "projects" && (
+              <ul className="pl-4">
+                <li><Link href="/Projects" className={dropdownLink}>All Projects</Link></li>
+                <li><Link href="/Projects/nextjs-portfolio" className={dropdownLink}>Next.js Portfolio</Link></li>
+                <li><Link href="/Projects/front/backend-challenges" className={dropdownLink}>Frontend/Backend Challenges</Link></li>
+              </ul>
+            )}
+          </div>
+
+          <div className="space-y-1">
+            <button onClick={() => toggleDropdown("services")} className={navLink}>Services ▾</button>
+            {activeDropdown === "services" && (
+              <ul className="pl-4">
+                <li><Link href="/Services" className={dropdownLink}>Overview</Link></li>
+                <li><Link href="/Services/web-development" className={dropdownLink}>Web Development</Link></li>
+                <li><Link href="/Services/performance" className={dropdownLink}>Performance Optimization</Link></li>
+                <li><Link href="/Services/seo" className={dropdownLink}>SEO & Strategy</Link></li>
+                <li><Link href="/Services/maintenance" className={dropdownLink}>Maintenance</Link></li>
+              </ul>
+            )}
+          </div>
+
+          <div className="space-y-1">
+            <button onClick={() => toggleDropdown("resources")} className={navLink}>Resources ▾</button>
+            {activeDropdown === "resources" && (
+              <ul className="pl-4">
+                <li><Link href="/Resources/Insight" className={dropdownLink}>Insight</Link></li>
+                <li><Link href="/Resources/Toolkits" className={dropdownLink}>Toolkits</Link></li>
+                <li><Link href="/Resources/Playground" className={dropdownLink}>Playground</Link></li>
+                <li><Link href="/Resources/Faq" className={dropdownLink}>FAQ</Link></li>
+              </ul>
+            )}
+          </div>
+
+          <Link href="/Resume" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>Resume</Link>
+          <Link href="/Contact" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+          <button onClick={toggleTheme} className="block text-xl">{theme === "dark" ? "🌞" : "🌙"}</button>
+        </div>
+      )}
     </nav>
   );
 };
