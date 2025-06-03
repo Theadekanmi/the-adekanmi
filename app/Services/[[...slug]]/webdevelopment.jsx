@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { RocketLaunchIcon } from "@heroicons/react/24/outline";
 
 export default function WebDevelopment() {
@@ -10,19 +11,47 @@ export default function WebDevelopment() {
         <p className="text-lg mb-10 max-w-3xl mx-auto">
           Robust, scalable, and fast web development services tailored to meet business goals.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ServiceCard title="Full-Stack Solutions" description="End-to-end web apps using Next.js, Express, and Node." />
-          <ServiceCard title="API Integrations" description="Connect with third-party services and cloud platforms." />
-          <ServiceCard title="Real-time Apps" description="Build interactive, real-time applications with websockets." />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {webDevServices.map((item, idx) => (
+            <WebDevCard key={idx} {...item} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function ServiceCard({ title, description }) {
+const webDevServices = [
+  {
+    title: "Full-Stack Solutions",
+    description: "End-to-end web apps using Next.js, Express, and Node.",
+    image: "https://res.cloudinary.com/dpuj2f1h3/image/upload/v1748716812/frontend_yb8vpx.webp",
+  },
+  {
+    title: "API Integrations",
+    description: "Connect with third-party services and cloud platforms.",
+    image: "https://res.cloudinary.com/dpuj2f1h3/image/upload/v1748718970/api_xlpkrz.webp",
+  },
+  {
+    title: "Real-time Apps",
+    description: "Build interactive, real-time applications with websockets.",
+    image: "https://res.cloudinary.com/dpuj2f1h3/image/upload/v1748719540/realtime_znmliw.webp",
+  },
+];
+
+function WebDevCard({ title, description, image }) {
   return (
-    <div className="p-6 rounded-xl bg-white dark:bg-darkCard shadow-md hover:shadow-lg transition">
+    <div className="bg-white dark:bg-darkCard p-6 rounded-xl shadow-md hover:shadow-lg transition">
+      <div className="relative w-full h-52 mb-4 rounded-md overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover rounded-md"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
       <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">{title}</h4>
       <p className="text-gray-500 dark:text-gray-300">{description}</p>
     </div>

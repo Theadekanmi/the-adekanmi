@@ -12,7 +12,7 @@ const Footer = () => {
           href="https://github.com/theadekanmi"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-200 hover:text-blue-600 text-3xl"
+          className="text-blue-200 hover:text-blue-600 text-2xl"
         >
           <FaGithub />
         </a>
@@ -21,7 +21,7 @@ const Footer = () => {
           href="http://www.linkedin.com/in/theadekanmi"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-400 hover:text-blue-600 text-3xl"
+          className="text-blue-400 hover:text-blue-600 text-2xl"
         >
           <FaLinkedin />
         </a>
@@ -30,7 +30,7 @@ const Footer = () => {
           href="https://twitter.com/THEADEKANMI"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white hover:text-gray-400 text-3xl"
+          className="text-white hover:text-gray-400 text-2xl"
         >
           <FaTwitter />
         </a>
@@ -39,7 +39,7 @@ const Footer = () => {
           href="https://wa.me/2348100098339"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-green-400 hover:text-green-600 text-3xl"
+          className="text-green-400 hover:text-green-600 text-2xl"
         >
           <FaWhatsapp />
         </a>
@@ -48,7 +48,7 @@ const Footer = () => {
           href="mailto:theadekanmi@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-red-200 hover:text-red-600 text-3xl"
+          className="text-red-200 hover:text-red-600 text-2xl"
         >
           <MdEmail />
         </a>
@@ -57,7 +57,7 @@ const Footer = () => {
           href="https://www.instagram.com/theadekanmi?igsh=dnZsZmRnZ21hN3A2"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-red-400 hover:text-red-600 text-3xl"
+          className="text-red-400 hover:text-red-600 text-2xl"
         >
           <FaInstagram />
         </a>
