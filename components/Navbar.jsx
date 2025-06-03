@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "./ThemeProvider"
+import { useTheme } from "./ThemeProvider";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -11,14 +11,13 @@ const Navbar = () => {
   const projectsRef = useRef();
   const servicesRef = useRef();
   const resourcesRef = useRef();
+  const mobileDropdownRef = useRef();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const refs = [projectsRef, servicesRef, resourcesRef];
-      const clickedInsideDropdown = refs.some(
-        (ref) => ref.current && ref.current.contains(event.target)
-      );
-      if (!clickedInsideDropdown) {
+      const refs = [projectsRef, servicesRef, resourcesRef, mobileDropdownRef];
+      const clickedInside = refs.some(ref => ref.current && ref.current.contains(event.target));
+      if (!clickedInside) {
         setActiveDropdown(null);
       }
     };
@@ -27,8 +26,21 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = (menu) => {
-    setActiveDropdown(activeDropdown === menu ? null : menu);
+    setActiveDropdown(prev => (prev === menu ? null : menu));
   };
+
+  const handleLinkClick = (event) => {
+  const href = event.currentTarget ? event.currentTarget.getAttribute("href") : null;
+
+  if (href) {
+    setTimeout(() => {
+      setActiveDropdown(null);
+      setIsMobileMenuOpen(false);
+      window.location.href = href;
+    }, 200);
+  }
+};
+
 
   const navLink = "block py-2 px-4 hover:text-blue-600";
   const dropdownLink = "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800";
@@ -44,7 +56,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden text-2xl">
+        <button onClick={() => setIsMobileMenuOpen(prev => !prev)} className="lg:hidden text-2xl">
           {isMobileMenuOpen ? "✕" : "☰"}
         </button>
 
@@ -56,9 +68,9 @@ const Navbar = () => {
             <button onClick={() => toggleDropdown("projects")} className={navLink}>Projects ▾</button>
             {activeDropdown === "projects" && (
               <ul className="absolute left-0 mt-2 min-w-[180px] bg-white dark:bg-darkBackground shadow-lg rounded-md">
-                <li><Link href="/Projects" className={dropdownLink} onClick={() => setActiveDropdown(null)}>All Projects</Link></li>
-                <li><Link href="/Projects/nextjs-portfolio" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Next.js Portfolio</Link></li>
-                <li><Link href="/Projects/front/backend-challenges" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Frontend/Backend Challenges</Link></li>
+                <li><Link href="/Projects" className={dropdownLink} onClick={handleLinkClick}>All Projects</Link></li>
+                <li><Link href="/Projects/nextjs-portfolio" className={dropdownLink} onClick={handleLinkClick}>Next.js Portfolio</Link></li>
+                <li><Link href="/Projects/front/backend-challenges" className={dropdownLink} onClick={handleLinkClick}>Frontend/Backend Challenges</Link></li>
               </ul>
             )}
           </li>
@@ -67,11 +79,11 @@ const Navbar = () => {
             <button onClick={() => toggleDropdown("services")} className={navLink}>Services ▾</button>
             {activeDropdown === "services" && (
               <ul className="absolute left-0 mt-2 min-w-[180px] bg-white dark:bg-darkBackground shadow-lg rounded-md">
-                <li><Link href="/Services" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Overview</Link></li>
-                <li><Link href="/Services/web-development" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Web Development</Link></li>
-                <li><Link href="/Services/performance" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Performance Optimization</Link></li>
-                <li><Link href="/Services/seo" className={dropdownLink} onClick={() => setActiveDropdown(null)}>SEO & Strategy</Link></li>
-                <li><Link href="/Services/maintenance" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Maintenance</Link></li>
+                <li><Link href="/Services" className={dropdownLink} onClick={handleLinkClick}>Overview</Link></li>
+                <li><Link href="/Services/web-development" className={dropdownLink} onClick={handleLinkClick}>Web Development</Link></li>
+                <li><Link href="/Services/performance" className={dropdownLink} onClick={handleLinkClick}>Performance Optimization</Link></li>
+                <li><Link href="/Services/seo" className={dropdownLink} onClick={handleLinkClick}>SEO & Strategy</Link></li>
+                <li><Link href="/Services/maintenance" className={dropdownLink} onClick={handleLinkClick}>Maintenance</Link></li>
               </ul>
             )}
           </li>
@@ -80,10 +92,10 @@ const Navbar = () => {
             <button onClick={() => toggleDropdown("resources")} className={navLink}>Resources ▾</button>
             {activeDropdown === "resources" && (
               <ul className="absolute left-0 mt-2 min-w-[180px] bg-white dark:bg-darkBackground shadow-lg rounded-md">
-                <li><Link href="/Resources/Insight" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Insight</Link></li>
-                <li><Link href="/Resources/Toolkits" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Toolkits</Link></li>
-                <li><Link href="/Resources/Playground" className={dropdownLink} onClick={() => setActiveDropdown(null)}>Playground</Link></li>
-                <li><Link href="/Resources/Faq" className={dropdownLink} onClick={() => setActiveDropdown(null)}>FAQ</Link></li>
+                <li><Link href="/Resources/Insight" className={dropdownLink} onClick={handleLinkClick}>Insight</Link></li>
+                <li><Link href="/Resources/Toolkits" className={dropdownLink} onClick={handleLinkClick}>Toolkits</Link></li>
+                <li><Link href="/Resources/Playground" className={dropdownLink} onClick={handleLinkClick}>Playground</Link></li>
+                <li><Link href="/Resources/Faq" className={dropdownLink} onClick={handleLinkClick}>FAQ</Link></li>
               </ul>
             )}
           </li>
@@ -94,50 +106,53 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden px-6 pb-4 space-y-3 bg-white dark:bg-darkBackground shadow">
-          <Link href="/" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-          <Link href="/About" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+        <div ref={mobileDropdownRef} className="lg:hidden px-6 pb-4 space-y-3 bg-white dark:bg-darkBackground shadow">
+          <Link href="/" className={navLink} onClick={handleLinkClick}>Home</Link>
+          <Link href="/About" className={navLink} onClick={handleLinkClick}>About</Link>
 
-          <div className="space-y-1">
+          {/* Mobile Projects */}
+          <div>
             <button onClick={() => toggleDropdown("projects")} className={navLink}>Projects ▾</button>
             {activeDropdown === "projects" && (
-              <ul className="pl-4">
-                <li><Link href="/Projects" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>All Projects</Link></li>
-                <li><Link href="/Projects/nextjs-portfolio" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Next.js Portfolio</Link></li>
-                <li><Link href="/Projects/front/backend-challenges" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Frontend/Backend Challenges</Link></li>
+              <ul className="pl-4 mt-1 bg-white dark:bg-darkBackground rounded-md border border-gray-300 dark:border-gray-700 shadow-inner">
+                <li><Link href="/Projects" className={dropdownLink} onClick={handleLinkClick}>All Projects</Link></li>
+                <li><Link href="/Projects/nextjs-portfolio" className={dropdownLink} onClick={handleLinkClick}>Next.js Portfolio</Link></li>
+                <li><Link href="/Projects/front/backend-challenges" className={dropdownLink} onClick={handleLinkClick}>Frontend/Backend Challenges</Link></li>
               </ul>
             )}
           </div>
 
-          <div className="space-y-1">
+          {/* Mobile Services */}
+          <div>
             <button onClick={() => toggleDropdown("services")} className={navLink}>Services ▾</button>
             {activeDropdown === "services" && (
-              <ul className="pl-4">
-                <li><Link href="/Services" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Overview</Link></li>
-                <li><Link href="/Services/web-development" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Web Development</Link></li>
-                <li><Link href="/Services/performance" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Performance Optimization</Link></li>
-                <li><Link href="/Services/seo" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>SEO & Strategy</Link></li>
-                <li><Link href="/Services/maintenance" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Maintenance</Link></li>
+              <ul className="pl-4 mt-1 bg-white dark:bg-darkBackground rounded-md border border-gray-300 dark:border-gray-700 shadow-inner">
+                <li><Link href="/Services" className={dropdownLink} onClick={handleLinkClick}>Overview</Link></li>
+                <li><Link href="/Services/web-development" className={dropdownLink} onClick={handleLinkClick}>Web Development</Link></li>
+                <li><Link href="/Services/performance" className={dropdownLink} onClick={handleLinkClick}>Performance Optimization</Link></li>
+                <li><Link href="/Services/seo" className={dropdownLink} onClick={handleLinkClick}>SEO & Strategy</Link></li>
+                <li><Link href="/Services/maintenance" className={dropdownLink} onClick={handleLinkClick}>Maintenance</Link></li>
               </ul>
             )}
           </div>
 
-          <div className="space-y-1">
+          {/* Mobile Resources */}
+          <div>
             <button onClick={() => toggleDropdown("resources")} className={navLink}>Resources ▾</button>
             {activeDropdown === "resources" && (
-              <ul className="pl-4">
-                <li><Link href="/Resources/Insight" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Insight</Link></li>
-                <li><Link href="/Resources/Toolkits" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Toolkits</Link></li>
-                <li><Link href="/Resources/Playground" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>Playground</Link></li>
-                <li><Link href="/Resources/Faq" className={dropdownLink} onClick={() => { setActiveDropdown(null); setIsMobileMenuOpen(false); }}>FAQ</Link></li>
+              <ul className="pl-4 mt-1 bg-white dark:bg-darkBackground rounded-md border border-gray-300 dark:border-gray-700 shadow-inner">
+                <li><Link href="/Resources/Insight" className={dropdownLink} onClick={handleLinkClick}>Insight</Link></li>
+                <li><Link href="/Resources/Toolkits" className={dropdownLink} onClick={handleLinkClick}>Toolkits</Link></li>
+                <li><Link href="/Resources/Playground" className={dropdownLink} onClick={handleLinkClick}>Playground</Link></li>
+                <li><Link href="/Resources/Faq" className={dropdownLink} onClick={handleLinkClick}>FAQ</Link></li>
               </ul>
             )}
           </div>
 
-          <Link href="/Resume" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>Resume</Link>
-          <Link href="/Contact" className={navLink} onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+          <Link href="/Resume" className={navLink} onClick={handleLinkClick}>Resume</Link>
+          <Link href="/Contact" className={navLink} onClick={handleLinkClick}>Contact</Link>
           <button onClick={toggleTheme} className="block text-xl">{theme === "dark" ? "🌞" : "🌙"}</button>
         </div>
       )}
@@ -146,3 +161,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
