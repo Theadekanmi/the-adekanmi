@@ -36,7 +36,7 @@ export default function ProjectPage() {
           title: "Classic Info",
           category: "nextjs",
           desc: "This initiative is designed to provide a dynamic learning environment for individuals looking to advance their skills in technology. The platform offers comprehensive courses in coding, cybersecurity, AI, and IT, catering to both beginners and experienced professionals.",
-          img: "/images/classic.jpg",
+          img: "https://res.cloudinary.com/dpuj2f1h3/image/upload/v1747075054/ubiqum-coding-bootcamp_uzhle4.webp",
           stack: ["Next.js", "Tailwind"],
           link: "https://classicinfo.vercel.app",
         },
