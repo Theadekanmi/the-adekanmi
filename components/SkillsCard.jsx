@@ -26,11 +26,7 @@ const skills = [
     level: 90,
     icon: <FaGitAlt size={24} className="inline-block mr-2 text-blue-600 dark:text-blue-400" />,
   },
-  {
-    name: "React.js",
-    level: 80,
-    icon: <FaReact size={24} className="inline-block mr-2 text-blue-600 dark:text-blue-400" />,
-  },
+  
   {
     name: "Next.js",
     level: 80,
