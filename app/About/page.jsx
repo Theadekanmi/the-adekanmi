@@ -4,7 +4,14 @@ import SkillsCard from "@/components/SkillsCard";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CiMail } from "react-icons/ci";
-import { FaUserCircle, FaMobileAlt, FaCogs, FaTachometerAlt, FaGlobe, FaCodeBranch } from "react-icons/fa";
+import {
+  FaUserCircle,
+  FaMobileAlt,
+  FaCogs,
+  FaTachometerAlt,
+  FaGlobe,
+  FaCodeBranch,
+} from "react-icons/fa";
 import DevelopmentMethodCard from "@/components/DevelopmentMethodCard";
 
 const fadeIn = {
@@ -106,6 +113,15 @@ export default function AboutPage() {
                 Beyond development, I help startups optimize websites for speed,
                 responsiveness, and seamless UX.
               </p>
+              <p>
+                I build custom web solutions for a wide range of industries, 
+                from online stores and educational platforms to hotel booking
+                systems, agriculture tech, and restaurant ordering sites.
+                Whether you need a sleek business website or a powerful booking
+                or e-commerce system, I deliver fast, responsive, and optimized
+                solutions using modern tools like Next.js, Tailwind CSS, and
+                integrated payment APIs.
+              </p>
             </motion.div>
 
             <motion.div
@@ -189,9 +205,8 @@ export default function AboutPage() {
       </section>
 
       <section>
-         <Experience/>
+        <Experience />
       </section>
-
     </main>
   );
 }
