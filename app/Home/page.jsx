@@ -140,45 +140,68 @@ const HomePage = () => {
       type="video/mp4"
     />
   </video>
-  <div className="absolute inset-0 bg-black/50 dark:bg-black/60 z-10"></div>
+  <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/80 z-10"></div>
 
-  <div className="relative z-20 px-6 py-16 max-w-6xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-500 text-center">ABOUT ME</h2>
+  <div className="relative z-20 px-6 py-20 max-w-6xl mx-auto">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold mb-6 text-blue-400 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        ABOUT ME
+      </h2>
+    </div>
 
-    <div className="flex flex-col md:flex-row items-start md:items-stretch gap-12">
-      <div className="md:w-1/2 text-lg leading-relaxed space-y-4 text-white">
-        <p>
-          I'm Adekanmi, a Full-Stack Developer with a focus on crafting visually compelling,
-             high-performance web experiences. On the front end, I specialize in responsive design,
-             clean, scalable code, and user-first interfaces that not only look stunning but also
-             perform seamlessly across devices.
-        </p>
+    <div className="flex flex-col lg:flex-row items-start lg:items-stretch gap-12">
+      <div className="lg:w-1/2 text-lg leading-relaxed space-y-6 text-white">
+        <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-8 border border-white/20">
+          <p className="text-xl leading-relaxed">
+            I'm Adekanmi, a Full-Stack Developer with a focus on crafting visually compelling,
+               high-performance web experiences. On the front end, I specialize in responsive design,
+               clean, scalable code, and user-first interfaces that not only look stunning but also
+               perform seamlessly across devices.
+          </p>
+        </div>
 
-        <div className="text-center mt-4">
+        <div className="text-center">
           <a
             href="/About"
-            className="inline-block px-6 py-3 bg-blue-600 rounded-full text-white hover:bg-blue-700 transition"
+            className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           >
             Read More
           </a>
         </div>
       </div>
 
-      <div className="md:w-1/2 bg-blue-600 p-6 rounded-lg text-white shadow-md">
-        <h3 className="text-xl font-bold mb-4 text-center">CERTIFICATIONS</h3>
-        <ul className="space-y-3 text-base">
-          <li className="border-b border-blue-300 pb-2">Frontend Development – 3MTT Certification (2024)</li>
-          <li className="border-b border-blue-300 pb-2">Frontend Development — Classic Info-Tech (2024)</li>
-          <li className="border-b border-blue-300 pb-2">AI Career Essentials — ALX Africa (2024)</li>
-          <li className="border-b border-blue-300 pb-2">Back-End Development — ALX Africa (2024)</li>
-          <li className="pb-2">Generative AI Essentials — Microsoft & LinkedIn (2024)</li>
-        </ul>
+      <div className="lg:w-1/2">
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 rounded-2xl text-white shadow-2xl border border-blue-400/30">
+          <h3 className="text-2xl font-bold mb-6 text-center text-blue-100">CERTIFICATIONS</h3>
+          <ul className="space-y-4 text-base">
+            <li className="flex items-center gap-3 border-b border-blue-400/30 pb-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <span>Frontend Development – 3MTT Certification (2024)</span>
+            </li>
+            <li className="flex items-center gap-3 border-b border-blue-400/30 pb-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <span>Frontend Development — Classic Info-Tech (2024)</span>
+            </li>
+            <li className="flex items-center gap-3 border-b border-blue-400/30 pb-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <span>AI Career Essentials — ALX Africa (2024)</span>
+            </li>
+            <li className="flex items-center gap-3 border-b border-blue-400/30 pb-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <span>Back-End Development — ALX Africa (2024)</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <span>Generative AI Essentials — Microsoft & LinkedIn (2024)</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div className="flex flex-wrap justify-center gap-4 mt-16">
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-16">
       <a href="/Contact">
-        <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">
+        <button className="flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
           <CiMail className="text-xl" />
           <span>HIRE ME</span>
         </button>
@@ -188,7 +211,7 @@ const HomePage = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <button className="flex items-center gap-2 px-6 py-3 bg-white text-black border border-gray-300 rounded-full hover:bg-blue-700 hover:text-white transition">
+        <button className="flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
           <CiMail className="text-xl" />
           <span>MY CV</span>
         </button>
@@ -209,24 +232,29 @@ const HomePage = () => {
             My Development Expertise — A comprehensive overview of my technical toolkit.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skills.map((skill) => (
               <div
                 key={skill.name}
-                className="w-full sm:w-1/2 lg:w-1/4 bg-white dark:bg-darkCard p-6 rounded-xl shadow-md text-center transition hover:shadow-lg"
+                className="group bg-white dark:bg-darkCard p-6 rounded-2xl shadow-lg text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600"
               >
-                <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2 flex items-center justify-center">
+                <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                   {skill.icon}
-                  <span>{skill.name}</span>
+                </div>
+                <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-3 group-hover:text-blue-700 transition-colors duration-300">
+                  {skill.name}
                 </h4>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-medium">
                   Proficiency: {skill.level}%
                 </p>
-                <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-blue-600 dark:bg-blue-400 rounded-full transition-all duration-700"
+                    className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-1000 ease-out group-hover:from-blue-600 group-hover:to-purple-600"
                     style={{ width: `${skill.level}%` }}
                   />
+                </div>
+                <div className="mt-2 text-xs text-gray-400 dark:text-gray-500 font-medium">
+                  {skill.level >= 90 ? 'Expert' : skill.level >= 80 ? 'Advanced' : skill.level >= 70 ? 'Intermediate' : 'Beginner'}
                 </div>
               </div>
             ))}
@@ -236,60 +264,89 @@ const HomePage = () => {
 
       <section id="services" className="w-full px-6 py-20 bg-lightBackground dark:bg-darkBackground text-lightText dark:text-darkText transition-all duration-300">
   <div className="max-w-6xl mx-auto">
-    {/* Heading */}
-    <h2 className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-4">
-      Services
-    </h2>
-    <p className="text-center max-w-2xl mx-auto text-lg mb-12">
-      Engineering scalable frontend and backend architectures using modern frameworks and cloud technologies to accelerate growth for startups and enterprise platforms.
-    </p>
+    {/* Enhanced Heading */}
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-blue-500 mb-4">
+        Services
+      </h2>
+      <p className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        Engineering scalable frontend and backend architectures using modern frameworks and cloud technologies to accelerate growth for startups and enterprise platforms.
+      </p>
+    </div>
 
-    {/* Services Grid */}
-    <div className="flex flex-wrap justify-center gap-6">
+    {/* Enhanced Services Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {/* API Development */}
-      <div className="w-full sm:w-1/2 lg:w-1/3 bg-white dark:bg-darkCard p-6 rounded-xl shadow-md text-center transition hover:shadow-lg">
-        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+      <div className="group bg-white dark:bg-darkCard p-8 rounded-2xl shadow-lg text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600">
+        <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
+          <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4 group-hover:text-blue-700 transition-colors duration-300">
           API Development
         </h4>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
           Building scalable and efficient RESTful APIs using frameworks like Django REST and Flask, enabling seamless integration with third-party services.
         </p>
       </div>
 
       {/* Frontend Development */}
-      <div className="w-full sm:w-1/2 lg:w-1/3 bg-white dark:bg-darkCard p-6 rounded-xl shadow-md text-center transition hover:shadow-lg">
-        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+      <div className="group bg-white dark:bg-darkCard p-8 rounded-2xl shadow-lg text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600">
+        <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
+          <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4 group-hover:text-blue-700 transition-colors duration-300">
           Frontend Development
         </h4>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
           Crafting dynamic, responsive user interfaces using React.js and Next.js, ensuring a smooth and engaging user experience.
         </p>
       </div>
 
       {/* Database Management */}
-      <div className="w-full sm:w-1/2 lg:w-1/3 bg-white dark:bg-darkCard p-6 rounded-xl shadow-md text-center transition hover:shadow-lg">
-        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+      <div className="group bg-white dark:bg-darkCard p-8 rounded-2xl shadow-lg text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600">
+        <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
+          <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+          </svg>
+        </div>
+        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4 group-hover:text-blue-700 transition-colors duration-300">
           Database Management
         </h4>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
           Designing and managing databases to ensure data integrity and efficiency, handling both SQL (PostgreSQL, MySQL) and NoSQL (MongoDB) databases.
         </p>
       </div>
 
       {/* African Payment Integration */}
-      <div className="w-full sm:w-1/2 lg:w-1/3 bg-white dark:bg-darkCard p-6 rounded-xl shadow-md text-center transition hover:shadow-lg">
-        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+      <div className="group bg-white dark:bg-darkCard p-8 rounded-2xl shadow-lg text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600">
+        <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
+          <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+        </div>
+        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4 group-hover:text-blue-700 transition-colors duration-300">
           African Payment Integration
         </h4>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
           Specializing in integrating local African payment gateways like M-Pesa, Flutterwave, and Paystack to enable secure and seamless transactions.
         </p>
       </div>
       
-      {/* Perfomance optimization */}
-       <div className="w-full sm:w-1/2 lg:w-1/3 bg-white dark:bg-darkCard p-6 rounded-xl shadow-md transition hover:shadow-lg">
-        <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">Performance Optimization</h3>
-        <p className="text-gray-600 dark:text-gray-300">
+      {/* Performance optimization */}
+      <div className="group bg-white dark:bg-darkCard p-8 rounded-2xl shadow-lg text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-600">
+        <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
+          <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4 group-hover:text-blue-700 transition-colors duration-300">
+          Performance Optimization
+        </h4>
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
           Enhancing load speed, code efficiency, and SEO to maximize user engagement and platform stability across devices.
         </p>
       </div>

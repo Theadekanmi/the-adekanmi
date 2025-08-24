@@ -1,6 +1,6 @@
 "use client";
 import ResourcesNav from "@/components/ResourcesNav";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 const faqs = [
@@ -33,28 +33,10 @@ const faqs = [
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
-  const contentRefs = useRef([]);
 
-  // For smooth height animation
-  useEffect(() => {
-    contentRefs.current.forEach((ref, idx) => {
-      if (ref) {
-        if (openIndex === idx) {
-          ref.style.maxHeight = ref.scrollHeight + "px";
-          ref.style.opacity = 1;
-          ref.style.paddingTop = "0.5rem";
-          ref.style.paddingBottom = "0.5rem";
-        } else {
-          ref.style.maxHeight = "0px";
-          ref.style.opacity = 0;
-          ref.style.paddingTop = "0";
-          ref.style.paddingBottom = "0";
-        }
-      }
-    });
-  }, [openIndex]);
-
-  const toggle = (index) => setOpenIndex(openIndex === index ? null : index);
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <section className="min-h-screen py-16 px-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
@@ -63,12 +45,11 @@ export default function Faq() {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="mb-6 border-b border-gray-300 dark:border-gray-700"
+            className="mb-6 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
           >
             <button
               onClick={() => toggle(index)}
-              aria-expanded={openIndex === index}
-              className="flex justify-between items-center w-full text-left text-lg font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 py-4"
+              className="flex justify-between items-center w-full text-left text-lg font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 py-4 px-6 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
             >
               {faq.question}
               <span className="ml-2 text-blue-600 dark:text-blue-400">
@@ -79,13 +60,11 @@ export default function Faq() {
                 )}
               </span>
             </button>
-            <div
-              ref={(el) => (contentRefs.current[index] = el)}
-              className="overflow-hidden transition-all duration-300 ease-in-out text-gray-700 dark:text-gray-300 max-h-0 opacity-0"
-              aria-hidden={openIndex !== index}
-            >
-              <p className="text-base">{faq.answer}</p>
-            </div>
+            {openIndex === index && (
+              <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
+                <p className="text-base text-gray-700 dark:text-gray-300">{faq.answer}</p>
+              </div>
+            )}
           </div>
         ))}
         <div className="text-center mt-10">

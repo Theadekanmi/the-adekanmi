@@ -153,34 +153,70 @@ const allProjects = [
 // ProjectGrid Component
 function ProjectGrid({ projects }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map(({ slug, title, desc, img, stack, link }) => (
         <div
           key={slug}
-          className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105"
         >
-          <img src={img} alt={title} className="w-full h-48 object-cover" />
-          <div className="p-6 text-left">
-            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">{desc}</p>
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-blue-600 hover:underline font-semibold mb-3"
-            >
-              Visit Project
-            </a>
-            <div className="flex flex-wrap gap-2 mt-4">
+          {/* Enhanced Image Container */}
+          <div className="relative overflow-hidden h-56">
+            <img 
+              src={img} 
+              alt={title} 
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+            />
+            {/* Overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <div className="p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-colors duration-300"
+                >
+                  View Project
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Enhanced Content */}
+          <div className="p-6">
+            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors duration-300">
+              {title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+              {desc}
+            </p>
+            
+            {/* Enhanced Tech Stack */}
+            <div className="flex flex-wrap gap-2 mb-4">
               {stack.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 border border-gray-400 dark:border-gray-500 text-gray-600 dark:text-gray-300 rounded-full text-xs font-mono"
+                  className="px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 rounded-full text-xs font-medium hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors duration-200"
                 >
                   {tech}
                 </span>
               ))}
             </div>
+            
+            {/* Enhanced Visit Link */}
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-300 group/link"
+            >
+              Visit Project
+              <svg className="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
           </div>
         </div>
       ))}
@@ -225,31 +261,43 @@ export default function Projects() {
   }
 
   return (
-    <section className="py-20 px-6 max-w-6xl mx-auto text-center">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Projects</h1>
+    <section className="py-20 px-6 max-w-7xl mx-auto">
+      {/* Enhanced Header */}
+      <div className="text-center mb-16">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          My Projects
+        </h1>
+        <p className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 text-xl leading-relaxed">
+          {projectDescriptions[activeTab]}
+        </p>
+      </div>
 
-      {/* Description */}
-      <p className="max-w-3xl mx-auto mb-10 text-gray-700 dark:text-gray-300 text-lg">
-        {projectDescriptions[activeTab]}
-      </p>
-
-      {/* Tabs */}
-      <div className="flex justify-center flex-wrap gap-4 mb-10">
+      {/* Enhanced Tabs */}
+      <div className="flex justify-center flex-wrap gap-2 mb-16">
         {[
-          { id: "allProjects", label: "All Projects" },
-          { id: "nextjs", label: "Next.js Projects" },
-          { id: "challenges", label: "Frontend/Backend Challenges" },
-        ].map(({ id, label }) => (
+          { id: "allProjects", label: "All Projects", count: allProjects.length },
+          { id: "nextjs", label: "Next.js Projects", count: allProjects.filter(p => p.category === "nextjs").length },
+          { id: "challenges", label: "Frontend/Backend Challenges", count: allProjects.filter(p => p.category === "challenges").length },
+        ].map(({ id, label, count }) => (
           <button
             key={id}
             onClick={() => handleTabChange(id)}
-            className={`px-4 py-2 font-medium rounded-lg border-b-2 ${
+            className={`px-6 py-3 font-semibold rounded-xl border-2 transition-all duration-300 ${
               activeTab === id
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-600 hover:text-blue-600"
-            } transition`}
+                ? "border-blue-600 text-blue-600 bg-blue-50 dark:bg-blue-900/20 shadow-lg"
+                : "border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/10"
+            }`}
           >
-            {label}
+            <span className="flex items-center gap-2">
+              {label}
+              <span className={`px-2 py-1 text-xs rounded-full ${
+                activeTab === id 
+                  ? "bg-blue-600 text-white" 
+                  : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+              }`}>
+                {count}
+              </span>
+            </span>
           </button>
         ))}
       </div>
@@ -257,31 +305,61 @@ export default function Projects() {
       {/* Projects Grid */}
       <ProjectGrid projects={paginatedProjects} />
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-12 gap-4">
-        <button
-          onClick={() => setPage((p) => Math.max(p - 1, 1))}
-          disabled={page === 1}
-          className={`px-5 py-2 rounded-lg border ${
-            page === 1
-              ? "border-gray-300 text-gray-400 cursor-not-allowed"
-              : "border-blue-600 text-blue-600 hover:bg-blue-100"
-          } transition`}
-        >
-          Previous
-        </button>
-        <button
-          onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-          disabled={page === totalPages}
-          className={`px-5 py-2 rounded-lg border ${
-            page === totalPages
-              ? "border-gray-300 text-gray-400 cursor-not-allowed"
-              : "border-blue-600 text-blue-600 hover:bg-blue-100"
-          } transition`}
-        >
-          Next
-        </button>
-      </div>
+      {/* Enhanced Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center mt-16 gap-4">
+          <button
+            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+            disabled={page === 1}
+            className={`px-6 py-3 rounded-xl border-2 font-semibold transition-all duration-300 ${
+              page === 1
+                ? "border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                : "border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:shadow-lg"
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Previous
+            </span>
+          </button>
+          
+          {/* Page Numbers */}
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+              <button
+                key={pageNum}
+                onClick={() => setPage(pageNum)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                  page === pageNum
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                }`}
+              >
+                {pageNum}
+              </button>
+            ))}
+          </div>
+          
+          <button
+            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+            disabled={page === totalPages}
+            className={`px-6 py-3 rounded-xl border-2 font-semibold transition-all duration-300 ${
+              page === totalPages
+                ? "border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                : "border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:shadow-lg"
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              Next
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      )}
     </section>
   );
 }
