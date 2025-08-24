@@ -103,6 +103,9 @@ const HomePage = () => {
 
   return (
     <main>
+      {/* SEO H1 Heading - Hidden visually but accessible to screen readers */}
+      <h1 className="sr-only">Adekanmi Adedigba - Full-Stack Developer Portfolio | Web Development & African Payment Integration</h1>
+      
       <BackgroundSwiper />
 
       {/* Popup Button */}
