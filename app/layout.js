@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ThemeProvider } from "../components/ThemeProvider"; 
+import ClientOnly from "../components/ClientOnly";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,12 +49,24 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText`}>
-        <ThemeProvider>
-          <Navbar />
-          <div className="pt-20 overflow-x-hidden">{children}</div>
-          <Footer />
-        </ThemeProvider>
+      <head>
+        {/* Bing Webmaster Tools Verification */}
+        <meta name="msvalidate.01" content="259024B2A7C1EC254C50B67449B0B88D" />
+        
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="wgvyBktuTfGQQ9-N_SgILGggi7TfUw-U8H_EiAqPt_o" />
+      </head>
+      <body 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText`}
+        suppressHydrationWarning={true}
+      >
+        <ClientOnly>
+          <ThemeProvider>
+            <Navbar />
+            <div className="pt-20 overflow-x-hidden">{children}</div>
+            <Footer />
+          </ThemeProvider>
+        </ClientOnly>
       </body>
     </html>
   );

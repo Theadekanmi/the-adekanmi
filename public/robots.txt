@@ -5,6 +5,10 @@ Allow: /
 # Your live domain: https://the-adekanmi.vercel.app/
 Sitemap: https://the-adekanmi.vercel.app/sitemap.xml
 
+# Search Engine Verification
+# Bing Webmaster Tools: 259024B2A7C1EC254C50B67449B0B88D
+# Google Search Console: wgvyBktuTfGQQ9-N_SgILGggi7TfUw-U8H_EiAqPt_o
+
 # Disallow admin or private areas (if any)
 Disallow: /admin/
 Disallow: /private/
