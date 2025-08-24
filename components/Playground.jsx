@@ -42,9 +42,12 @@ export default function Playground() {
   const nextSnippet = () => setIndex((index + 1) % codeSnippets.length);
 
   return (
-    <section className="min-h-screen py-16 px-6 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-white">
+    <section className="min-h-screen py-16 px-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Web Development Playground | Interactive Coding Examples & Demos</h1>
+      
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6 text-center">Playground</h2>
+        <h2 className="text-4xl font-bold mb-10 text-center">Interactive Playground</h2>
         <div className="bg-gray-900 text-green-400 p-6 rounded-lg shadow-md text-sm font-mono whitespace-pre-wrap">
           <h3 className="text-lg font-semibold text-white mb-2">{codeSnippets[index].title}</h3>
           <pre>{codeSnippets[index].code}</pre>

@@ -4,16 +4,12 @@ import { motion } from "framer-motion";
 
 export default function Insight() {
   return (
-    <section className="px-6 py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-white min-h-screen">
+    <section className="min-h-screen py-16 px-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Web Development Insights & Resources | Latest Trends & Best Practices</h1>
+      
       <div className="max-w-4xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-6 text-center"
-        >
-          Deep Insights & Learning
-        </motion.h2>
+        <h2 className="text-4xl font-bold mb-10 text-center">Web Development Insights</h2>
 
         <motion.p
           initial={{ opacity: 0 }}

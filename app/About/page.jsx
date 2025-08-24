@@ -58,9 +58,12 @@ const developmentMethods = [
   },
 ];
 
-export default function AboutPage() {
+export default function About() {
   return (
     <main>
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">About Adekanmi Adedigba - Full-Stack Developer | Skills, Experience & Background</h1>
+      
       {/* About Section */}
       <section className="relative w-full overflow-hidden text-lightText dark:text-darkText">
         <video
@@ -120,7 +123,7 @@ export default function AboutPage() {
                 Whether you need a sleek business website or a powerful booking
                 or e-commerce system, I deliver fast, responsive, and optimized
                 solutions using modern tools like Next.js, Tailwind CSS, and
-                integrated payment APIs.
+                integrated payment APIs.
               </p>
             </motion.div>
 

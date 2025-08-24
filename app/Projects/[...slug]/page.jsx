@@ -79,7 +79,10 @@ export default function ProjectPage() {
 
   return (
     <section className="p-8 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold text-center">{project.title}</h1>
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Project Details - {project.title} | Web Development Portfolio</h1>
+      
+      <h2 className="text-4xl font-bold text-center">{project.title}</h2>
       <p className="text-lg text-center text-gray-600 dark:text-gray-300 my-4">
         {project.description}
       </p>

@@ -1,12 +1,15 @@
 "use client";
 import { WrenchScrewdriverIcon } from "@heroicons/react/24/outline";
 
-export default function seo() {
+export default function SEO() {
   return (
     <section className="w-full px-6 py-20 bg-lightBackground dark:bg-darkBackground text-lightText dark:text-darkText transition-all duration-500">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">SEO Services | Search Engine Optimization & Digital Marketing</h1>
+      
       <div className="max-w-6xl mx-auto text-center">
         <WrenchScrewdriverIcon className="h-16 w-16 text-blue-600 mb-6 animate-spin-slow" />
-        <h2 className="text-4xl font-bold text-blue-500 mb-4">SEO & Web Strategy</h2>
+        <h2 className="text-4xl font-bold text-blue-500 mb-4">SEO Services</h2>
         <p className="text-lg mb-10 max-w-3xl mx-auto">
           Get discovered and convert effectively through tailored SEO strategies and optimized architecture.
         </p>

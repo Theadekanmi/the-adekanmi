@@ -40,6 +40,9 @@ export default function Faq() {
 
   return (
     <section className="min-h-screen py-16 px-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Frequently Asked Questions | Web Development & Portfolio FAQs</h1>
+      
       <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold mb-10 text-center">Frequently Asked Questions</h2>
         {faqs.map((faq, index) => (

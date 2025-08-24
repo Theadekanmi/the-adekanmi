@@ -1,9 +1,12 @@
 "use client";
 import { WrenchIcon } from "@heroicons/react/24/outline";
 
-export default function maintenance() {
+export default function Maintenance() {
   return (
     <section className="w-full px-6 py-20 bg-lightBackground dark:bg-darkBackground text-lightText dark:text-darkText transition-all duration-500">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Website Maintenance & Support Services | Ongoing Care & Updates</h1>
+      
       <div className="max-w-6xl mx-auto text-center">
         <WrenchIcon className="h-16 w-16 text-blue-600 mb-6 animate-wiggle" />
         <h2 className="text-4xl font-bold text-blue-500 mb-4">Maintenance & Support</h2>

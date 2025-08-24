@@ -13,6 +13,9 @@ export default function Overview() {
       id="services"
       className="w-full px-6 py-20 bg-lightBackground dark:bg-darkBackground text-lightText dark:text-darkText transition-all duration-300"
     >
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Web Development Services | Full-Stack Development, API Development & African Payment Integration</h1>
+      
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-4 animate-fade-in">
           Services

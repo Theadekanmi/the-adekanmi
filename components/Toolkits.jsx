@@ -26,16 +26,12 @@ const toolkitItems = [
 
 export default function Toolkits() {
   return (
-    <section className="px-6 py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
-      <div className="max-w-6xl mx-auto">
-        <motion.h2
-          className="text-4xl font-bold mb-4 text-center"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Downloadable Toolkits
-        </motion.h2>
+    <section className="min-h-screen py-16 px-6 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Web Development Toolkits & Resources | Essential Tools for Developers</h1>
+      
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-4xl font-bold mb-10 text-center">Development Toolkits</h2>
         <p className="text-center mb-12 text-gray-600 dark:text-gray-400">
           Explore useful templates, guides, and resources for developers and designers.
         </p>

@@ -5,6 +5,9 @@ import { RocketLaunchIcon } from "@heroicons/react/24/outline";
 export default function WebDevelopment() {
   return (
     <section className="w-full px-6 py-20 bg-lightBackground dark:bg-darkBackground text-lightText dark:text-darkText transition-all duration-500">
+      {/* SEO H1 Heading */}
+      <h1 className="sr-only">Web Development Services | Custom Websites & Web Applications</h1>
+      
       <div className="max-w-6xl mx-auto text-center">
         <RocketLaunchIcon className="h-16 w-16 text-blue-600 mb-6 animate-bounce" />
         <h2 className="text-4xl font-bold text-blue-500 mb-4">Web Development</h2>
