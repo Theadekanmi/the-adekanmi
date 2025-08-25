@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Adekanmi Adedigba - Full-Stack Developer Portfolio | Web Development & African Payment Integration",
-  description: "Professional Full-Stack Developer specializing in React, Next.js, Python, and African payment gateways. View my portfolio of web applications, APIs, and digital solutions.",
+  title: "Adekanmi Adedigba — Full‑Stack Developer Portfolio",
+  description: "Full‑Stack developer building fast web apps with React, Next.js, and Python. African payment integrations included.",
   keywords: ["Full-Stack Developer", "React Developer", "Next.js Developer", "Python Developer", "African Payment Integration", "Web Development", "API Development", "Nigeria Developer"],
   authors: [{ name: "Adekanmi Adedigba" }],
   creator: "Adekanmi Adedigba",
@@ -27,16 +27,16 @@ export const metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Adekanmi Adedigba - Full-Stack Developer Portfolio",
-    description: "Professional Full-Stack Developer specializing in React, Next.js, Python, and African payment gateways.",
+    title: "Adekanmi Adedigba — Full‑Stack Developer Portfolio",
+    description: "Full‑Stack developer building fast web apps with React, Next.js, and Python.",
     type: "website",
     locale: "en_US",
     siteName: "Adekanmi Adedigba Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adekanmi Adedigba - Full-Stack Developer Portfolio",
-    description: "Professional Full-Stack Developer specializing in React, Next.js, Python, and African payment gateways.",
+    title: "Adekanmi Adedigba — Full‑Stack Developer Portfolio",
+    description: "Full‑Stack developer building fast web apps with React, Next.js, and Python.",
   },
 };
 

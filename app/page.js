@@ -4,6 +4,9 @@ import Home from './Home/page';
 
 export default function page() {
   return (
-    <div><Home/></div>
+    <div>
+      <h1 className="sr-only">Adekanmi Adedigba — Full-Stack Developer Portfolio</h1>
+      <Home/>
+    </div>
   );
 }
