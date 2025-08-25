@@ -3,6 +3,7 @@ Allow: /
 
 # Sitemap
 # Your live domain: https://the-adekanmi.vercel.app/
+Sitemap: https://the-adekanmi.vercel.app/sitemap.xml
 Sitemap: https://the-adekanmi.vercel.app/sitemap.xml?v=2
 
 # Search Engine Verification
