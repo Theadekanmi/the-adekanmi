@@ -1,18 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { ThemeProvider } from "../components/ThemeProvider"; 
+import { ThemeProvider } from "../components/ThemeProvider";
 import ClientOnly from "../components/ClientOnly";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-poppins",
 });
 
 export const metadata = {
@@ -22,10 +16,7 @@ export const metadata = {
   authors: [{ name: "Adekanmi Adedigba" }],
   creator: "Adekanmi Adedigba",
   publisher: "Adekanmi Adedigba",
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
   openGraph: {
     title: "Adekanmi Adedigba — Full‑Stack Developer Portfolio",
     description: "Full‑Stack developer building fast web apps with React, Next.js, and Python.",
@@ -48,23 +39,15 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Bing Webmaster Tools Verification */}
         <meta name="msvalidate.01" content="259024B2A7C1EC254C50B67449B0B88D" />
-        
-        {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="wgvyBktuTfGQQ9-N_SgILGggi7TfUw-U8H_EiAqPt_o" />
       </head>
-      <body 
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText`}
-        suppressHydrationWarning={true}
-      >
+      <body className={`${poppins.variable} font-sans antialiased`} suppressHydrationWarning>
         <ClientOnly>
           <ThemeProvider>
-            <Navbar />
-            <div className="pt-20 overflow-x-hidden">{children}</div>
-            <Footer />
+            {children}
           </ThemeProvider>
         </ClientOnly>
       </body>
